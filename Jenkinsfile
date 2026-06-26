@@ -34,7 +34,7 @@ pipeline {
         stage('build') {
             steps {
                 sh """
-                    zip -r backend-${appversion}.zip */ -x Jenkinsfile -x backend-${appversion}.zip
+                    zip -q -r backend-${appversion}.zip * -x Jenkinsfile -x backend-${appversion}.zip
                     ls -ltr
                 """
             }
@@ -43,7 +43,7 @@ pipeline {
     post { 
         always { 
             echo 'I will always say Hello again!'
-            //cleanWs()
+            cleanWs()
         }
         success {
             echo "I will run when pipeline is sucess"
