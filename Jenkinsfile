@@ -13,8 +13,8 @@ pipeline {
             steps {
                 sh """
                    echo "this is testing"
-                   ls -ltr
                    npm install
+                   ls -ltr
                 """
             }
         }
