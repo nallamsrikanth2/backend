@@ -14,6 +14,7 @@ pipeline {
                 sh """
                    echo "this is testing"
                    ls -ltr
+                   npm install
                 """
             }
         }
