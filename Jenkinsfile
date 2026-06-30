@@ -10,6 +10,7 @@ pipeline {
     }
     environment {
         def appversion = ''
+        def nexusUrl   = 'nexusserver.nsrikanth.online' 
     }
     stages {
         stage('read the version') {
@@ -39,6 +40,26 @@ pipeline {
                 """
             }
         }
+        stage( 'nexus artifact upload')
+            step {
+                script {
+                        nexusArtifactUploader(
+        nexusVersion: 'nexus3',
+        protocol: 'http',
+        nexusUrl: "${nexusUrl}",
+        groupId: 'com.backend',
+        version: "${appversion}",
+        repository: 'backend',
+        credentialsId: 'nexus-auth',
+        artifacts: [
+            [artifactId: "backend",
+             classifier: '',
+             file: "bakend-" + "${appversion}" + '.zip',
+             type: 'zip']
+        ]
+     )
+                }
+            }
     }
     post { 
         always { 
