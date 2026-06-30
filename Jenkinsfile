@@ -40,7 +40,7 @@ pipeline {
                 """
             }
         }
-        stage( 'nexus artifact upload')
+        stage( 'nexus artifact upload') {
             steps {
                 script {
                         nexusArtifactUploader(
@@ -58,6 +58,7 @@ pipeline {
              type: 'zip']
         ]
      )
+                }
                 }
             }
     }
